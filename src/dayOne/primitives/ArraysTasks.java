@@ -11,7 +11,7 @@ public class ArraysTasks {
        int[] test = {4,5};
       //  int[] testTwo = {2,3,1};
       //  int[] testThree = {2,3,1};
-        System.out.println(hasTwoThree(test));
+        //System.out.println(sameFirstLastTwo(test));
     }
     static boolean firstLast6 (int[] nums) {
         return (nums[0] == 6 || (nums [nums.length -1] == 6));
@@ -35,4 +35,10 @@ static boolean hasTwoThree (int[] nums) {
     return (nums[0] == 2 || nums[0] ==3 || nums[1] ==2 || nums[1] ==3);
 
 }
+
+    /* static void sameFirstLastTwo(int[] nums) {
+        int even = 0;
+        for (i= 0; i < nums.length; i--);
+        if ()
+    */
 }
