@@ -8,9 +8,17 @@ import static dayTwo.generatingPeople.people;
 /**
  * Created by student on 23-Aug-16.
  */
+
+//the whole logic of every class!
 public class TaskProcessing {
+     WelcomeWindow gui;
+
+     void executeGUI() {
+        gui = new WelcomeWindow();
+    }
     static void createEmployee(List<String> data) {
 
+        //creating new object - then use the list to bring all information from other classes onto bellow information.
         Employee temp = new Employee(
                 data.get(0),
                 data.get(1),
@@ -24,20 +32,21 @@ public class TaskProcessing {
                 data.get(11)
                 );
 
-        people.add(temp);
+        people.add(temp); //add new employee to our person collection
     }
 
-    public static void printAll() { //prints all
-        for (Person e : people)
+    public static void printAll() { //prints all objects
+        for (Person e : people) //for each person, e represents one person
+            //when we call E , we call the to String function from employee class.
             System.out.println(String.format("[%s] " + e, people.indexOf(e) ));
     }
 
-static int searchByFirstName(String firstName) {
+static int searchByFirstName(String firstName) { //accept the string method
     for (Person p : people)
-        if (p.getFirstName().contains(firstName))
+        if (p.getFirstName().contains(firstName)) //if the firstName is the same then print out the index!
             return people.indexOf(p);
 
-    return -1;
+    return -1; //if it did not find the index then you return -1
 }
 
     //editing

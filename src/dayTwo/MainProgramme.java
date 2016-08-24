@@ -12,7 +12,10 @@ public class MainProgramme {
         for (Person p : people) {
             System.out.println(p);
         }*/
-        commandGUI.display();
+        //commandGUI.display();
+        generatingPeople.addPeople();
+        //TaskProcessing.executeGUI();
+        WelcomeWindow entry = new WelcomeWindow(); //
     }
 
 }

@@ -10,12 +10,12 @@ import static dayTwo.generatingPeople.people;
 public class commandGUI {
 
     //creating this class only for the purpose of accepting users input!
-
     static Scanner input = new Scanner(System.in);
 
     static void display() {
         int choice;
         do {
+            //call display and then show the options
             System.out.println("Welcome to Employee Database");
             System.out.println("1. Add an Employee");
             System.out.println("2. Edit an Employee");
@@ -27,37 +27,47 @@ public class commandGUI {
             System.out.println("Enter between (1-6): ");
 
             //read input
-            choice = input.nextInt();
+            choice = input.nextInt(); //encapsulation
+
         } while (choice < 1 || choice > 6);
         int index;
-        List<String> tempData = new ArrayList<>();
+        List<String> tempData = new ArrayList<>(); //temp data is there to just collect the information given
 
+//once we have the input, we then run the options
         switch (choice) {
             case 1:
-                tempData = inputScreen();
-                TaskProcessing.createEmployee(tempData);
-                display();
+                tempData = inputScreen(); //give the user input (input screen)
+                TaskProcessing.createEmployee(tempData); //when the input has been collected and then sent to
+                //task processor (another class) to do the job.
+
+                display(); //recursive - it shows the screen again for the user to choose what they wanna do next.
+                break;
             case 2:
                 index = findFirstName();
                 tempData = inputScreen();
                 TaskProcessing.editDetail(index, tempData);
+                display();
+                break;
             case 3:
                 TaskProcessing.removeEmployee(requestIndex());
                 display();
+                break;
             case 4:
                 TaskProcessing.printAll();
                 display();
+                break;
             case 5:
                 index = findFirstName();
                 System.out.println(people.get(index));
                 display();
+                break;
             case 6:
                 break;
 
         }
     }
 
-    static List<String> inputScreen() {
+    static List<String> inputScreen() { //it only collects the input set out by the user.
         List<String> employeeData = new ArrayList<>(); //this scope of employee doesn't go anywhere else!
 
         input.nextLine();
@@ -100,7 +110,7 @@ public class commandGUI {
     }
 
     static int findFirstName() {
-        System.out.print("Enter first Name:");
+        System.out.print("Enter first Name:"); //only ask the user to put the first name
         String firstName = input.next();
         return TaskProcessing.searchByFirstName(firstName);
     }

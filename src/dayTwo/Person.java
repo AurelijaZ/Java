@@ -8,8 +8,9 @@ import java.time.temporal.ChronoUnit;
  */
 
 
-public class Person {
+public abstract class Person {
     //fields
+    //private means - they are only available for this class only!!!
     private String firstName;
     private String lastName;
     private short height;
@@ -72,14 +73,14 @@ public class Person {
 
 
     //constructor overloading
-    Person() {}
+    Person() {} //default
 
     public Person(String firstName, String lastName, LocalDate birthDate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
     }
-
+    //using larger constructor unlike the ^^
     public Person( String firstName, String lastName, short height, double weight,
                    LocalDate birthDate,SexType sex) {
         this.birthDate = birthDate;
@@ -95,6 +96,7 @@ public class Person {
     public long getAge() {
         if(birthDate == null) {
             return 0; }
+        //chronoUnit is encapsulation!
         long years = ChronoUnit.YEARS.between(birthDate, LocalDate.now());
         return years;
     }
@@ -108,6 +110,9 @@ public class Person {
     public void sleep() {
         isSleeping = true; }
     //how we gonna produce it
+    //toString is a generic print so we use override out come
+    //overrride is simply annotation
+
     @Override
     public String toString() {
         return String.format("Person: %s %s %s %s %s %s ",
