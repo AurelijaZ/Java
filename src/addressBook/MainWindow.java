@@ -1,26 +1,24 @@
-package addressBook;
+/* package addressBook;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
+import java.awt.event.*;
+import java.util.*;
 
-/**
+ /**
  * Created by student on 25-Aug-16.
  */
-public class MainWindow implements ActionListener {
+/* public class MainWindow implements ActionListener {
 
-    private JLabel lblBirthData, lblFirstName, lblLastName;
+    private JLabel lblBirthDate, lblFirstName, lblLastName;
     private JLabel lblFirstLine, lblPostcode;
     private JLabel lblEmail, lblFacebook, lblPhoneNum, lblTwitter;
 
-    private JTextField textBirthDate, textFirstName, textLastName;
-    private JTextField textFirstLine, textPostcode;
-    private JTextField textEmail, textFacebook, textPhoneNum, textTwitter;
+    private JTextField txtBirthDate, txtFirstName, txtLastName;
+    private JTextField txtFirstLine, txtPostcode;
+    private JTextField txtEmail, txtFacebook, txtPhoneNum, txtTwitter;
 
     //create 2 buttons
     private JButton btnUpdate;
@@ -36,8 +34,15 @@ public class MainWindow implements ActionListener {
     private JPanel fieldPanel; //right hand side of panel
     private JPanel inputPanel;
     private JPanel btnPanel;
+    private JPanel createAddressList;
 
-   private JList addressList;
+    private JList addressList;
+
+    private int employeeIndex = -1;
+    private boolean createNew;
+
+
+
 
     public MainWindow() {
         JFrame mainFrame = new JFrame("Address Book: ");
@@ -102,6 +107,96 @@ public class MainWindow implements ActionListener {
 
     private JPanel createFieldsPanel () {
 
-        
+        lblBirthDate = new JLabel("Date of Birth (YYYY/MM/DD):");
+        inputPanel.add(lblBirthDate);
+        txtBirthDate = new JTextField();
+        inputPanel.add(txtBirthDate);
+
+        inputPanel = new JPanel();
+        //create ingrid inside of it
+        inputPanel.setLayout(new GridLayout(0, 2, 5, 5));
+        lblFirstName = new JLabel("First Name:");
+        inputPanel.add(lblFirstName);
+        txtFirstName = new JTextField();
+        inputPanel.add(txtFirstName);
+
+        lblLastName = new JLabel("Last Name:");
+        inputPanel.add(lblLastName);
+        txtLastName = new JTextField();
+        inputPanel.add(txtLastName);
+
+        lblFirstLine = new JLabel("First Line of Address:");
+        inputPanel.add(lblFirstLine);
+        txtFirstLine = new JTextField();
+        inputPanel.add(txtFirstLine);
+
+        lblPostcode = new JLabel("Postcode:");
+        inputPanel.add(lblPostcode);
+        txtPostcode = new JTextField();
+        inputPanel.add(txtPostcode);
+
+        lblEmail = new JLabel("Email:");
+        inputPanel.add(lblEmail);
+        txtEmail = new JTextField();
+        inputPanel.add(txtEmail);
+
+        lblFacebook = new JLabel("Facebook:");
+        inputPanel.add(lblFacebook);
+        txtFacebook = new JTextField();
+        inputPanel.add(txtFacebook);
+
+        lblPhoneNum = new JLabel("Phone Number:");
+        inputPanel.add(lblPhoneNum);
+        txtPhoneNum = new JTextField();
+        inputPanel.add(txtPhoneNum);
+
+        return inputPanel;
     }
-    }
+     private JPanel createButtonPanel() {
+         btnPanel = new JPanel();
+         btnPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+
+         btnUpdate = new JButton("Update");
+         //button needs a listener
+
+         btnUpdate.addActionListener(new ActionListener() {
+             @Override
+             public void actionPerformed(ActionEvent e) { //new section to create new employees + create a list that will
+                 if (createNew) {
+                     //create a list to add into the system.
+                     TaskProcessing.createContact(getFieldsInfo());
+                     createAddressList();
+                     createNew = false;
+                     clearTxtFields(); //once its created then clear the field.
+                 } else {
+                     TaskProcessing.editDetail(employeeIndex, getFieldsInfo());
+                     createAddressList();
+                 }
+                 createNew = false;
+                 employeeIndex = -1;
+             }
+         });
+         private java.util.List<String> getFieldsInfo() {
+             java.util.List<String> data = new ArrayList<>();
+
+             data.add(txtFirstName.getText());
+             data.add(txtLastName.getText());
+
+
+             String[] stringDob = txtBirthDate.getText().split("-");
+             data.add(stringDob[0]);
+             data.add(stringDob[1]);
+             data.add(stringDob[2]);
+
+
+
+             String[] stringHireDate = txtHireDate.getText().split("-");
+             data.add(stringHireDate[0]);
+             data.add(stringHireDate[1]);
+             data.add(stringHireDate[2]);
+
+             data.add(txtPosition.getText());
+             return data;
+
+         }
+*/

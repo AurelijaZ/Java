@@ -53,7 +53,7 @@ public class MainWindow implements ActionListener {
 
     private JList employeeList;
 
-    private int employeeIndex;
+    private int employeeIndex = -1;
 
     private boolean createNew;
 
@@ -157,7 +157,7 @@ public class MainWindow implements ActionListener {
         employeeList.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                if(createNew) {
+
                     employeeIndex = employeeList.getSelectedIndex();
                     //check whether our collection is empty
                     if(people.size() > 0 && employeeIndex != -1) //if there are records, load it
@@ -166,7 +166,7 @@ public class MainWindow implements ActionListener {
                         clearTxtFields(); //if its empty leave it empty
                 }
 
-            }
+
         });
     }
 
@@ -236,13 +236,13 @@ public class MainWindow implements ActionListener {
         btnPanel = new JPanel();
         btnPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
-        btnUpdate = new JButton("Update BOOM");
+        btnUpdate = new JButton("Update");
         //button needs a listener
 
         btnUpdate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) { //new section to create new employees + create a list that will
-                if (createNew) {
+                if (createNew && employeeList.isSelectionEmpty()) {
                     //create a list to add into the system.
                     TaskProcessing.createEmployee(getFieldsInfo());
                     createEmployeeList();
@@ -250,9 +250,11 @@ public class MainWindow implements ActionListener {
                     clearTxtFields(); //once its created then clear the field.
                 } else {
                     TaskProcessing.editDetail(employeeIndex, getFieldsInfo());
-                createEmployeeList();
+                    createEmployeeList();
+                }
+                createNew = false;
+                employeeIndex = -1;
             }
-        }
         });
 
         btnPanel.add(btnUpdate);
@@ -261,9 +263,16 @@ public class MainWindow implements ActionListener {
         btnRemove.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            TaskProcessing.removeEmployee(employeeIndex);
-                createEmployeeList();
+                if (employeeIndex >= 0) {
+                    TaskProcessing.removeEmployee(employeeIndex);
+                    clearTxtFields();
+                    createEmployeeList();
+                    employeeIndex = -1;
+                } else
+                    JOptionPane.showMessageDialog(null, "No Employee Selected");
+
             }
+
         });
         btnPanel.add(btnRemove);
         return btnPanel;
