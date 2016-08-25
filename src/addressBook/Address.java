@@ -7,6 +7,8 @@ public class Address {
     private String firstLine;
     private String postcode;
 
+    Address() {}
+
     public Address(String firstLine, String postcode) {
 
         this.firstLine = firstLine;

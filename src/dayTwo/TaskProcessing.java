@@ -11,11 +11,8 @@ import static dayTwo.generatingPeople.people;
 
 //the whole logic of every class!
 public class TaskProcessing {
-     WelcomeWindow gui;
 
-     void executeGUI() {
-        gui = new WelcomeWindow();
-    }
+
     static void createEmployee(List<String> data) {
 
         //creating new object - then use the list to bring all information from other classes onto bellow information.

@@ -15,7 +15,7 @@ public class MainProgramme {
         //commandGUI.display();
         generatingPeople.addPeople();
         //TaskProcessing.executeGUI();
-        WelcomeWindow entry = new WelcomeWindow(); //
+        new WelcomeWindow(); //
     }
 
 }

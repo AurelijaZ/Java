@@ -23,6 +23,14 @@ public class Employee extends Person{
         this.position = position;
     }
 
+    public LocalDate getHireDate() {
+        return hireDate;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
     public void setHireDate(LocalDate hireDate) {
         this.hireDate = hireDate;
     }

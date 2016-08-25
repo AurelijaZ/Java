@@ -3,7 +3,7 @@ package addressBook;
 /**
  * Created by student on 23-Aug-16.
  */
-public class Contact {
+public class Contact extends Person {
 
     private String phoneNum;
     private String email;

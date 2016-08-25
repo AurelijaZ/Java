@@ -8,12 +8,9 @@ import static addressBook.generateContact.contact;
 public class MainProgramme {
     public static void main(String[] args) {
         generateContact.addContact();
+        CommandGUI.display();
 
-        for (Contact c : contact)
 
-        {
-            System.out.println(c);
-        }
     }
 }
 
