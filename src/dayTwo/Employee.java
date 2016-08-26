@@ -15,7 +15,7 @@ public class Employee extends Person{
     Employee() {}
 
     public Employee(String firstName, String lastName, short height, double weight, LocalDate birthDate, SexType sex,
-                     LocalDate hireDate, String position) {
+                    String position, LocalDate hireDate) {
         //super is a way to call out previous class information.
         super(firstName, lastName, height, weight, birthDate, sex);
         //getter and setter

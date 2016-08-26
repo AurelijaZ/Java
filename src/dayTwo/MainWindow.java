@@ -9,6 +9,8 @@ import java.awt.*;
 import java.awt.event.*;
 import static dayTwo.generatingPeople.*;
 
+import java.sql.SQLClientInfoException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -244,10 +246,16 @@ public class MainWindow implements ActionListener {
             public void actionPerformed(ActionEvent e) { //new section to create new employees + create a list that will
                 if (createNew && employeeList.isSelectionEmpty()) {
                     //create a list to add into the system.
-                    TaskProcessing.createEmployee(getFieldsInfo());
-                    createEmployeeList();
-                    createNew = false;
-                    clearTxtFields(); //once its created then clear the field.
+                    try {
+                        TaskProcessing.newEmployee(getFieldsInfo());
+
+                        createEmployeeList();
+                        //createNew = false;
+                        clearTxtFields(); //once its created then clear the field.
+                    } catch (SQLException createEx) {
+                        JOptionPane.showMessageDialog(null, "ERROR ADDIDNG EMPLOYEE" +
+                        System.lineSeparator() + createEx);
+                    }
                 } else {
                     TaskProcessing.editDetail(employeeIndex, getFieldsInfo());
                     createEmployeeList();
@@ -335,19 +343,13 @@ public class MainWindow implements ActionListener {
         data.add(txtHeight.getText());
         data.add(txtWeight.getText());
 
-        String[] stringDob = txtBirthDate.getText().split("-");
-        data.add(stringDob[0]);
-        data.add(stringDob[1]);
-        data.add(stringDob[2]);
+        data.add(txtBirthDate.getText());
 
         data.add(txtSex.getText());
-
-        String[] stringHireDate = txtHireDate.getText().split("-");
-        data.add(stringHireDate[0]);
-        data.add(stringHireDate[1]);
-        data.add(stringHireDate[2]);
-
         data.add(txtPosition.getText());
+        data.add(txtHireDate.getText());
+
+
         return data;
 
     }
